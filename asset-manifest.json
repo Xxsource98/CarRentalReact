@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CarRentalReact/static/css/main.24204fd3.chunk.css",
-    "main.js": "/CarRentalReact/static/js/main.b7e9e848.chunk.js",
-    "main.js.map": "/CarRentalReact/static/js/main.b7e9e848.chunk.js.map",
+    "main.js": "/CarRentalReact/static/js/main.7b2c5a51.chunk.js",
+    "main.js.map": "/CarRentalReact/static/js/main.7b2c5a51.chunk.js.map",
     "runtime-main.js": "/CarRentalReact/static/js/runtime-main.81c237dd.js",
     "runtime-main.js.map": "/CarRentalReact/static/js/runtime-main.81c237dd.js.map",
     "static/css/2.07c48c8e.chunk.css": "/CarRentalReact/static/css/2.07c48c8e.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.07c48c8e.chunk.css",
     "static/js/2.ebd015e4.chunk.js",
     "static/css/main.24204fd3.chunk.css",
-    "static/js/main.b7e9e848.chunk.js"
+    "static/js/main.7b2c5a51.chunk.js"
   ]
 }
