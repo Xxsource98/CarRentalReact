@@ -179,6 +179,13 @@
             .car-widget {
                 width: 100%;
                 height: 80%;
+
+                .car-widget-image {
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
             }
         }
     }
