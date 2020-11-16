@@ -1,0 +1,200 @@
+@import "../../style.scss";
+
+.selected-car-header {
+    position: relative;
+    background-color: $secondary_color;
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .selected-car-header-img {
+        width: 570px;
+        margin-left: 25px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .selected-car-header-price-box {
+        position: relative;
+        width: 570px;
+        height: 320px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+       
+        .header-button {
+            position: relative;
+            top: 42px;
+            width: 250px;
+            height: 50px;
+            outline: none;
+            border: $font_color solid 2px;
+            cursor: pointer;
+            background-color: transparent;
+            color: $font_color;
+            font-size: 1.3rem;
+            transition: all 0.35s ease;
+
+            &:hover {
+                background-color: $font_color;
+                color: $secondary_color;
+            }
+        }
+
+        .current-price-select-c {
+            position: relative;
+            top: 35px;
+            width: 250px;
+            height: 50px;
+            background-color: $secondary_color;
+            border: $font_color solid 2px;
+            font-size: 1.3rem;
+            color: $font_color;
+            outline: none;
+            transition: all 0.35s ease;
+
+            &:hover {
+                background-color: $font_color;
+                color: $secondary_color;
+            }
+        }
+
+        .small-text {
+            position: absolute;
+            font-size: 0.9rem;
+            top: -15px;
+        }
+
+        .selected-car-header-price-box-price-container {
+            position: relative;
+            width: 340px;
+            height: 210px;
+            
+            .selected-car-header-price-box-price-element{
+                display: flex;
+                justify-content: space-between;
+                height: 60px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+        height: auto;
+        justify-content: flex-start;
+        padding-bottom: 45px;
+
+        .selected-car-header-img {
+            position: relative;
+            width: 100%;
+            margin-left: 0px;
+        }
+
+        .selected-car-header-price-box {
+            position: relative;
+            width: 100%;
+
+            .selected-car-header-price-box-price-container {
+                width: 100%;
+
+                .selected-car-header-price-box-price-element {
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+.selected-car-specs {
+    position: relative;
+    background-color: $secondary_color;
+    width: 100%;
+    height: 380px;
+    top: 50px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    
+    .selected-car-specs-left-container {
+        width: 560px;
+        height: 100%;
+    }
+
+    .selected-car-specs-right-container {
+        width: 560px;
+        height: 100%;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 3px;
+        height: 100%;
+        background-color: $font_color;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    @media screen and (max-width: 580px) {
+        p {
+            font-size: 1.0rem;
+        }
+    }
+
+    @media screen and (max-width: 520px) {
+        justify-content: flex-start;
+        flex-direction: column;
+        height: auto;
+
+        .selected-car-specs-left-container {
+            width: 100%;
+        }
+
+        .selected-car-specs-right-container {
+            width: 100%;
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.selected-car-specs-element {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.23rem;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.selected-car-description-container {
+    position: relative;
+    top: 70px;
+    width: 100%;
+    min-height: 470px;
+    background-color: $secondary_color;
+    font-size: 1.45rem;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+
+    .selected-car-description {
+        width: 95%;
+        padding-top: 20px;
+    }
+
+    @media screen and (max-width: 900px) {
+        font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 520px) {
+        font-size: 1.0rem;
+    }
+}

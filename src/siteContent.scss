@@ -1,0 +1,32 @@
+@import "./style.scss";
+
+.site-content-container {
+    position: relative;
+    width: 100%;
+    top: -35px;
+    padding-bottom: 50px;
+
+    .site-content-container-content {
+        position: relative;
+        top: 35px;
+        width: 100%;
+    }
+}
+
+.site-content-header {
+    font-size: 3.2rem;
+    font-family: $header_font;
+    width: auto;
+    padding-bottom: 25px;
+
+    &::after {
+        content: '';
+        display: block;
+        position: relative;
+        top: 0px;
+        width: 100%;
+        height: 4px;
+        background-color: $font_color;
+        border-radius: 10px;
+    }
+}

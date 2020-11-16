@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+
+$bg_color: rgb(43, 41, 41);
+$secondary_color: rgb(34, 33, 33);
+$main_color: rgb(237, 237, 237); //#FADA13
+$default_font: 'Raleway', sans-serif;
+$header_font: 'Boogaloo', cursive;
+$font_color: rgb(237, 237, 237);
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: $font_color;
+    color: $font_color;
+    box-sizing: border-box;
+    background-color: $bg_color;
+    font-size: 20px;
+}
+
+body.disable-scroll {
+    overflow-y: hidden;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    transition: all 0.4s ease;
+
+    .site-content {
+        position: relative;
+        width: 61%;
+        margin-left: 450px;
+        top: 25px;
+        min-height: 95vh;
+    }
+    
+    .site-scroll-value {
+        position: fixed;
+        left: 0;
+        content: '';
+        width: 3px; 
+        background-color: $main_color;
+        height: 0%;
+        z-index: 96;
+        transition: width 0.2s ease;
+    }
+
+    @media screen and (max-width: 1190px) {
+        .site-content {
+            width: 95%;
+            margin: 0;
+            top: 95px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .site-scroll-value {
+            top: 96px;
+            height: 3px;
+            width: 0%;
+            z-index: 200;
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $font_color;
+}

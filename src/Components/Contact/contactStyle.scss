@@ -1,0 +1,157 @@
+@import "../../style.scss";
+
+.site-content-container-content {
+    position: relative;
+    font-size: 1.6rem;
+
+    
+    .contact-form {
+        position: relative;
+        width: 100%;
+        min-height: 450px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                width: 290px;
+                font-size: 1.3rem;
+                border: 2px solid white;
+                outline: none;
+                background-color: $secondary_color;
+                color: white;
+                padding: 6px;
+                margin-bottom: 9px;
+                transition: all 0.4s ease;
+
+                &:focus, &:hover  {
+                    width: 315px;
+                }
+            }
+
+            textarea {
+                width: 550px;
+                height: 280px;
+                font-size: 1.3rem;
+                border: 2px solid white;
+                outline: none;
+                background-color: $secondary_color;
+                color: white;
+                padding: 6px;
+            }
+
+            button {
+                width: 320px;
+                margin-top: 9px;
+                height: 50px;
+                outline: none;
+                border: $font_color solid 2px;
+                cursor: pointer;
+                background-color: transparent;
+                color: $font_color;
+                font-size: 1.3rem;
+                transition: all 0.4s ease;
+                
+                &:hover {
+                    background-color: $font_color;
+                    color: $secondary_color;
+                }
+            }
+        }
+    }
+
+    .contact-forms {
+        background-color: $secondary_color;
+        width: 100%;
+        height: 200px;
+        margin-top: 60px;
+        display: flex;
+        justify-content: space-around;
+
+        .contact-forms-element {
+            height: 100%;
+            width: 310px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s ease;
+
+            img {
+                width: 62px;
+                margin-right: 7px;
+            }
+
+            p, a {
+                text-align: center;
+                font-size: 1.6rem;
+            }
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+    }
+
+    @media screen and (max-width: 910px) {
+        .contact-forms {
+            .contact-forms-element { 
+                img {
+                    width: 54px;
+                }
+
+                p, a {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 760px) {
+        font-size: 1.4rem;
+
+        .contact-form {
+            form {
+                button {
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 60%;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 0;
+                }
+
+                textarea {
+                    padding: 0;
+                    width: 100%;
+                    resize: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 715px) {
+        .contact-forms {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .contact-forms-element { 
+                justify-content: center;
+                img {
+                    width: 42px;
+                }
+
+                p, a {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 390px) {
+        font-size: 1.2rem;
+    }
+}

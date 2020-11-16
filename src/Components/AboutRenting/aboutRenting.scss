@@ -1,0 +1,75 @@
+@import "../../style.scss";
+
+.aboutr-content-description {
+    position: relative;
+    min-height: 200px;
+    font-size: 1.8rem;
+    text-align: justify;
+
+    ol {
+        position: relative;
+        top: -27px;
+    }
+
+    li {
+        margin-bottom: 25px;
+    }
+}
+
+.aboutr-content-routes {
+    position: relative;
+    top: 55px;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+
+    .aboutr-button {
+        position: relative;
+        width: 350px;
+        height: 80px;
+        outline: none;
+        border: $font_color solid 2px;
+        cursor: pointer;
+        background-color: transparent;
+        color: $font_color;
+        font-size: 1.6rem;
+        transition: all 0.35s ease;
+
+        &:hover {
+            background-color: $font_color;
+            color: $secondary_color;
+        }
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .aboutr-content-description {
+        font-size: 1.4rem;
+    }
+
+    .aboutr-content-routes {
+        flex-direction: column;
+      
+        .aboutr-button  {
+            margin-top: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .aboutr-content-description {
+        font-size: 1.2rem;
+    }
+
+    .aboutr-content-routes {
+        flex-direction: column;
+        width: 100%;
+        
+        .aboutr-button  {
+            width: 140px;
+        }
+    }
+}

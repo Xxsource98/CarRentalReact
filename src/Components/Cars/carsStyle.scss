@@ -1,0 +1,194 @@
+@import "../../style.scss";
+
+.cars-site-container {
+    position: relative;
+    width: 100%;
+
+    .cars-site-filter-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .filter-container-box {
+       display: flex;
+       background-color: $secondary_color;
+       width: 320px;
+       height: 80px;
+       justify-content: space-between;
+       font-size: 1.6rem;
+       padding: 0px 10px;
+       cursor: pointer;
+       margin-right: 35px;
+       position: relative;
+
+       .filter-container-box-dropdown {
+            position: absolute;
+            display: none;
+            top: 80px;
+            width: 340px;
+            max-height: 400px;
+            margin-left: -10px;
+            background-color: $secondary_color;
+            z-index: 53;
+            overflow-y: scroll;
+
+           .filter-container-box-element {
+               display: flex;
+               align-items: center;
+               padding: 15px 10px;
+               background-color:  $secondary_color;
+               transition: background-color 0.4s ease;
+               
+               img {
+                   position: absolute;
+                   width: 20px;
+                   right: 20px;
+               }
+
+               &:hover {
+                   background-color: rgb(50, 50, 50);
+               }
+           }
+       }       
+    }
+
+    .filter-container-box.active > .filter-container-box-dropdown  {
+        display: block;
+    }
+
+    .cars-site-widgets-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding-top: 20px;
+
+        .car-widget {
+            position: relative;
+            background-color: $secondary_color;
+            width: 350px;
+            height: 600px;
+            margin-bottom: 35px;
+            transition: all 0.2s ease;
+
+            .car-widget-header {
+                font-size: 1.7rem;
+                margin-left: 10px;
+            }
+
+            .car-widget-image {
+                img {
+                    width: 100%;
+                    height: 195px;
+                }
+            }
+
+            .car-widget-desc {
+                position: relative;
+                top: -15px;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                
+                .car-widget-desc-line {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    height: 50px;
+                    font-size: 1.3rem;
+                    color: rgb(156, 156, 156);
+
+                    p {
+                        margin-left: 7px;
+                        margin-right: 7px;
+                    }
+                }
+            }
+
+            .car-widget-footer {
+                position: relative;
+                top: -14px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 1.5rem;
+
+                .underline {
+                    text-decoration: underline;
+                }
+
+                p {
+                    margin-left: 7px;
+                }
+
+                button {
+                    position: relative;
+                    width: 150px;
+                    height: 40px;
+                    outline: none;
+                    border: $font_color solid 2px;
+                    cursor: pointer;
+                    background-color: transparent;
+                    color: $font_color;
+                    font-size: 1.1rem;
+                    transition: all 0.35s ease;
+                    margin-right: 7px;
+                    &:hover {
+                        background-color: $font_color;
+                        color: $secondary_color;
+                    }
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width: 790px) {
+        .cars-site-filter-container {
+            flex-direction: column;
+            justify-content: center;
+            height: 185px;
+        }
+
+        .filter-container-box  {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            align-items: center;
+            margin-right: 0;
+
+            .filter-container-box-dropdown {
+                position: absolute;
+                top: 76px;
+                min-height: 100px;
+                width: 100%;
+                left: 10px;
+
+                .filter-container-box-element {
+                    position: relative;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 760px) {
+        .cars-site-widgets-container {
+            .car-widget {
+                width: 100%;
+                height: 80%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 440px) {
+        .filter-container-box  {    
+            width: 220px;        
+            .filter-container-box-dropdown {
+                width: 100%;
+            }
+        }
+    }
+}
