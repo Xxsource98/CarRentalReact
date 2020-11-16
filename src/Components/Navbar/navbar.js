@@ -21,7 +21,7 @@ const Navbar = () => {
                 }
             }/>
             <div className="navbar-header-logo">
-                <a href="/">ExpressCars</a>
+                <Link to="/">ExpressCars</Link>
             </div>
             <div className="navbar-wrapper">
                 <div className="navbar-header-items">
