@@ -108,6 +108,11 @@ export const filterBrandArray = [
 
 export const filterPriceArray = [
     {
+        ElementClassName: "price_null",
+        ElementID: "pricedefault",
+        ElementText: "Default"
+    },
+    {
         ElementClassName: "price_to_high",
         ElementID: "pricetohigh",
         ElementText: "Price to High"
@@ -1017,7 +1022,7 @@ export const carsList = [
             accelerationTo100: 2.9,
             maximumSpeed: 340
         }}
-        key="Ferrari F430"
+        key="Ferrari 812"
         description={` 
             Elit adipisicing excepteur esse qui esse cillum ut aliqua velit id deserunt consequat. Excepteur anim nostrud nulla do aliquip dolor consectetur exercitation consectetur.
             Eiusmod consectetur quis id excepteur cupidatat amet. Elit nostrud dolor id magna. Reprehenderit eu culpa aliquip ut. 

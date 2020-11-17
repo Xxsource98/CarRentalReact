@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 // Pictures
 import CloseIMG from "../../Images/Icons/close.png";
@@ -13,25 +14,25 @@ export const CreatePriceFilterBox = ({
     className = "",
     arrayElements = [],
 }) => {
-    const [ currentElement, setCurrentElement ] = useState("");
+    const [ currentElement, setCurrentElement ] = useState("Default");
+    const history = useHistory();
+    const urlParams = new URLSearchParams(history.location.search);
 
     const setPriceURL = (price_type) => {
-        const url = new URL(window.location.href);
-        if (url.searchParams.has("price")) {
-            url.searchParams.delete("price");
-            url.searchParams.append("price", price_type);
-            window.location.href = url;
-        } else {
-            url.searchParams.append("price", price_type);
-            window.location.href = url;
+        let brandsString = "";
+        if (urlParams.has("brands")) {
+            brandsString = urlParams.getAll("brands");
         }
+
+        window.location.href = history.createHref({
+            pathname: `cars?brands=${brandsString}&price=${price_type}`
+        });    
+        window.location.reload();
     }
 
     const setCurrentElementFromURL = () => {
-        const url = new URL(window.location.href);
-        if (url.searchParams.has("price")) {
-            const priceParam = url.searchParams.get("price");
-            setCurrentElement(priceParam === "pricetohigh" ? "Price to High" : "Price to Small");
+        if (urlParams.has("price")) {
+            setCurrentElement(urlParams.get("price") === "pricetohigh" ? "Price to High" : urlParams.get("price") === "pricetosmall" ? "Price to Small" : "Default");
         } else return;
     }
 
@@ -75,35 +76,39 @@ export const CreateSelectBrandFilterBox = ({
     arrayElements = [],
 }) => {
     let selectedBrandsArray = [];
+    const history = useHistory();
+    const urlParams = new URLSearchParams(history.location.search);
+
+    const setURLTo = (URL) => {
+        let pricePathElement = "";
+
+        if (urlParams.has("price")) {
+            pricePathElement = urlParams.get("price");
+        }
+
+        window.location.href = history.createHref({
+            pathname: `${URL}&price=${pricePathElement}`
+        });    
+        window.location.reload();
+    }
 
     const PushFilterURL = (array) => {
         const mappedArray = array.map(e => { return `${e.ElementID},`; });
-        const selectedBrands = mappedArray.join(",");
-        const url = new URL(window.location.href);
-        if (url.searchParams.has("brands")) {
-            const brandsInURL = url.searchParams.get("brands");
-            const newString = brandsInURL.concat(selectedBrands);
-            url.searchParams.set("brands", newString);
-            window.location.href = url;
+        const selectedBrands = mappedArray.join(" ");
+        let brandsPathElements = "";
+        
+        if (urlParams.has("brands")) {
+            const brandsInURL = urlParams.getAll("brands");
+            brandsPathElements = selectedBrands.concat(brandsInURL);
         } else {
-            url.searchParams.set("brands", selectedBrands);
-            window.location.href = url;
+            brandsPathElements = selectedBrands;
         }
-    }
 
-    const removeFromURL = (brand) => {
-        const url = new URL(window.location.href);
-        if (url.searchParams.has("brands")) {
-            const brands = url.searchParams.get("brands").split(",");
-            const result = brands.filter(e => e !== brand);
-            url.searchParams.set("brands", result);
-            window.location.href = url;
-        } else return;
+        setURLTo(`cars?brands=${brandsPathElements}`);
     }
 
     const pushElementToArray = (elementID, element) => {
         const index = window.location.href.search(elementID);
-        console.log(index);
         if (index >= 0) {
             return;
         } else {
@@ -114,22 +119,21 @@ export const CreateSelectBrandFilterBox = ({
         }
     }
     
-    const removeElementFromArray = element => {
-        const index = selectedBrandsArray.findIndex(e => e.ElementID === element);
-        if (index >= 0) {
-           selectedBrandsArray.splice(index, 1); // I didn't use hook set function, because it wasn't work property
-        } else {
-            return;
-        }
+    const removeElement = element => {
+        const brands = urlParams.get("brands").split(",");
+        const index = brands.findIndex(e => e === element);
+        if (index>= 0) {
+            brands.splice(index, 1);
+            setURLTo(`cars?brands=${brands}`);
+         } else {
+             return;
+         }
     }
 
     const getBrandsArrayFromURL = () => {
-        const href = window.location.href;
-        const url = new URL(href);
-
-        if (url.searchParams.has("brands")) {
-            const brands = url.searchParams.get("brands").split(",");
-            for (const brand of brands) {
+        if (urlParams.has("brands")) {
+            const brands = urlParams.get("brands").split(",");
+            for (const brand of brands) {           
                 if (brand === "")
                     continue;
 
@@ -140,8 +144,7 @@ export const CreateSelectBrandFilterBox = ({
                 const newElement = document.createElement("div");
                 newElement.setAttribute("class", `filter-container-box-element ${brand}`);
                 newElement.addEventListener("click", e => {
-                    removeElementFromArray(brand);
-                    removeFromURL(brand);
+                    removeElement(brand);
                 });
                 newElement.innerHTML = eText;
 
@@ -153,16 +156,13 @@ export const CreateSelectBrandFilterBox = ({
 
                 parent.appendChild(newElement);                
             }
-        }  
-        else return;
+        } else return;
     }
 
     const mappedBrandsArray = selectedBrandsArray.map(e => {
-        console.log(selectedBrandsArray.length);
         return (        
             <div key={e.ElementID} className={`filter-container-box-element ${e.ElementID}`} onClick={f => {
-                removeElementFromArray(e.ElementID);
-                PushFilterURL(selectedBrandsArray);
+                removeElement(e.ElementID);
             }}>
                 {e.ElementText}
                 <img src={CloseIMG} alt="CloseButton"/>
@@ -179,9 +179,7 @@ export const CreateSelectBrandFilterBox = ({
         )
     });
 
-    useEffect(() =>{
-        getBrandsArrayFromURL();
-    });
+    useEffect(() => getBrandsArrayFromURL());
 
     return (
         <div className={`filter-container-box ${className}`} onClick={f => {

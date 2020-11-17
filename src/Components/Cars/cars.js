@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Components
-import * as Filter from './filterbox_elements';
+import * as Filter from './filterboxElements';
 import CarWidgets from './carWidgets'
 import * as siteArrays from '../../siteArrays';
 

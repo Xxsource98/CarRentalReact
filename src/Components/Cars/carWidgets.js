@@ -1,22 +1,34 @@
 import React, { useEffect } from 'react'
+import {useHistory} from 'react-router-dom'
 
 const CarWidgets = ({
     widgetsArray = []
 }) => {
-    const url = new URL(window.location.href);
+    const history = useHistory();
+    const urlParams = new URLSearchParams(history.location.search);
+
+    /* make everything visible when something is null - tomorrow */
+    const makeEverythingVisible = () => {
+        const selector = document.querySelectorAll(`.car-widget`);
+        for (const selectorElement of selector) {
+            selectorElement.style.display = "block";
+        }
+    }
 
     useEffect(() => {
         let brandsArray = [];
 
-        const makeEverythingVisible = () => {
-            const selector = document.querySelectorAll(`.car-widget`);
-            for (const selectorElement of selector) {
-                selectorElement.style.display = "block";
+        /*if (urlParams.has("brands") && urlParams.has("price")) {
+            if (urlParams.get("price") === "") { 
+                window.location.href = history.createHref({
+                    pathname: `cars`
+                });    
+                window.location.reload();
             }
-        }
+        }*/
 
-        if (url.searchParams.has("brands")) {
-            brandsArray = url.searchParams.get("brands").split(",");
+        if (urlParams.has("brands")) {
+            brandsArray = urlParams.get("brands").split(",");
             
             if (brandsArray[0] === "") {
                 makeEverythingVisible();
@@ -45,10 +57,20 @@ const CarWidgets = ({
     });
 
     const displayWidgets = () => {
-        const url = new URL(window.location.href);
-        if (url.searchParams.has("price")) {
-            const is_price_to_high = url.searchParams.get("price") === "pricetohigh";
-            const is_price_to_small = url.searchParams.get("price") === "pricetosmall";
+        if (urlParams.has("price")) {
+            if (urlParams.get("price") !== "pricedefault" || 
+                urlParams.get("price") !== "pricetohigh"  ||
+                urlParams.get("price") !== "pricetosmall") {
+                makeEverythingVisible();
+                return widgetsArray;
+            }
+            
+            if (urlParams.get("price") === "pricedefault") {
+                return widgetsArray;
+            }
+
+            const is_price_to_high = urlParams.get("price") === "pricetohigh";
+            const is_price_to_small = urlParams.get("price") === "pricetosmall";
 
             if (is_price_to_high && !is_price_to_small) {
                 const sorted = widgetsArray.sort(function(a, b) {
